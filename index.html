@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist - Autoelevadores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <!-- ENCABEZADO -->
+        <header>
+            <p class="subtitulo">CONTROL</p>
+            <h1>Control de Equipo</h1>
+            <p class="bajada">Inspección operativa</p>
+        </header>
+
+        <!-- SELECCIÓN DE MODO -->
+        <section class="modo-selector">
+            <p><strong>¿Qué desea realizar?</strong></p>
+            <div class="modo-botones">
+                <button class="modo-btn activo" onclick="mostrarOperario()">👷 REALIZAR CONTROL</button>
+                <button class="modo-btn" onclick="mostrarSupervisor()">👨‍💼 REVISAR CONTROL</button>
+            </div>
+        </section>
+
+        <!-- DATOS DEL EQUIPO -->
+        <section class="tarjeta equipo-card">
+            <span class="label">EQUIPO</span>
+            <h2 id="nombreEquipo">Cargando equipo...</h2>
+        </section>
+
+        <!-- FORMULARIO OPERARIO -->
+        <div id="operarioForm">
+
+            <!-- DATOS OPERARIO -->
+            <section class="tarjeta datos">
+                <label for="operario">Operario</label>
+                <input type="text" id="operario" placeholder="Ingrese su nombre">
+
+                <div class="fechahora">
+                    <div>
+                        <span class="label">Fecha</span>
+                        <p id="fecha">--</p>
+                    </div>
+                    <div>
+                        <span class="label">Hora</span>
+                        <p id="hora">--</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHECKLIST DE PREGUNTAS -->
+            <section class="checklist">
+
+                <div class="pregunta">
+                    <p>1. Inspeccionar la carrocería (Choques, Raspones, protección faltante, etc.).</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>2. Verificar existencia y correcto estado de los espejos retrovisores.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>3. Verificar correcto estado y desgaste dentro de los parámetros de las cubiertas.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>4. Verificar correcto estado de las uñas y parrilla. Controlar la fijación.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>5. Controlar existencia, estado y vencimiento del extintor.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>6. * Controlar nivel de aceite del motor y convertidor.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>7. * Controlar nivel de líquido refrigerante.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>8. Verificar correcto estado del asiento y cinturón de seguridad.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>9. Poner en marcha, prestar atención a ruidos extraños y verificar correcto avance y retroceso.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>10. * Verificar correcto funcionamiento de Freno de pie y mano.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>11. Verificar correcto funcionamiento de la sirena de retroceso.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>12. Verificar correcto funcionamiento de luces y bocinas.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>13. Controlar nivel de aceite hidráulico.</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>14. Verificar correcto funcionamiento y regulación de láser delantero y trasero (si aplica).</p>
+                    <div class="opciones">
+                        <button onclick="seleccionar(this, 'ok')">OK</button>
+                        <button onclick="seleccionar(this, 'nook')">NO OK</button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- OBSERVACIONES -->
+            <section class="tarjeta observaciones">
+                <label>Observaciones</label>
+                <textarea placeholder="Ingrese observaciones si existen..."></textarea>
+            </section>
+
+            <!-- BOTÓN ENVIAR -->
+            <section class="enviar">
+                <button onclick="enviarControl()">ENVIAR CONTROL</button>
+            </section>
+
+        </div>
+
+        <!-- PANEL SUPERVISOR -->
+        <div id="supervisorPanel" style="display: none;">
+
+            <section class="tarjeta">
+                <span class="label">ÚLTIMO CONTROL REALIZADO</span>
+
+                <div class="resumen-item">
+                    <span>Equipo:</span>
+                    <strong id="supervisorEquipo">-</strong>
+                </div>
+                <div class="resumen-item">
+                    <span>Operario:</span>
+                    <strong id="supervisorOperario">-</strong>
+                </div>
+                <div class="resumen-item">
+                    <span>Fecha / Hora:</span>
+                    <strong id="supervisorFecha">-</strong>
+                </div>
+                <div class="resumen-item">
+                    <span>Resultado General:</span>
+                    <strong id="supervisorResultado">-</strong>
+                </div>
+            </section>
+
+            <section class="tarjeta">
+                <h3>Respuestas registradas</h3>
+                <ul class="lista-revision">
+                    <li><span>1. Carrocería</span> <strong id="revCarroceria">-</strong></li>
+                    <li><span>2. Espejos</span> <strong id="revEspejos">-</strong></li>
+                    <li><span>3. Cubiertas</span> <strong id="revCubiertas">-</strong></li>
+                    <li><span>4. Uñas y Parrilla</span> <strong id="revUnias">-</strong></li>
+                    <li><span>5. Extintor</span> <strong id="revExtintor">-</strong></li>
+                    <li><span>6. Aceite Motor</span> <strong id="revAceiteMotor">-</strong></li>
+                    <li><span>7. Refrigerante</span> <strong id="revRefrigerante">-</strong></li>
+                    <li><span>8. Asiento / Cinturón</span> <strong id="revAsiento">-</strong></li>
+                    <li><span>9. Marcha / Avance</span> <strong id="revAvance">-</strong></li>
+                    <li><span>10. Freno Pie/Mano</span> <strong id="revFreno">-</strong></li>
+                    <li><span>11. Sirena Retroceso</span> <strong id="revSirena">-</strong></li>
+                    <li><span>12. Luces / Bocina</span> <strong id="revLuces">-</strong></li>
+                    <li><span>13. Aceite Hidráulico</span> <strong id="revAceiteHidraulico">-</strong></li>
+                    <li><span>14. Láser</span> <strong id="revLaser">-</strong></li>
+                </ul>
+            </section>
+
+            <section class="tarjeta">
+                <h3>Observaciones</h3>
+                <p id="revisionObservaciones" style="font-style: italic;">Sin observaciones.</p>
+            </section>
+
+            <section class="tarjeta">
+                <label for="nombreSupervisor">Nombre del Supervisor</label>
+                <input type="text" id="nombreSupervisor" placeholder="Ingrese su nombre">
+                <button class="confirmar-revision" onclick="confirmarRevision()">✓ CONFIRMAR REVISIÓN</button>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
