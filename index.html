@@ -1,196 +1,309 @@
 <!DOCTYPE html>
-
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Checklist - Autoelevadores</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body>
 
-<div class="contenedor">
+    <div class="contenedor">
 
-```
-<!-- ENCABEZADO -->
-<header>
-    <p class="subtitulo">CONTROL</p>
-    <h1>Control de Equipo</h1>
-    <p class="bajada">Inspección operativa</p>
-</header>
+        <!-- ENCABEZADO -->
+        <header>
+            <p class="subtitulo">CONTROL</p>
+            <h1>Control de Equipo</h1>
+            <p class="bajada">Inspección operativa</p>
+        </header>
 
-<!-- SELECCIÓN DE MODO -->
-<section class="modo-selector">
-    <p><strong>¿Qué desea realizar?</strong></p>
 
-    <div class="modo-botones">
-        <button class="modo-btn activo" onclick="mostrarOperario()">
-            👷 REALIZAR CONTROL
-        </button>
+        <!-- SELECCIÓN DE MODO -->
+        <section class="modo-selector">
 
-        <button class="modo-btn" onclick="mostrarSupervisor()">
-            👨‍💼 REVISAR CONTROL
-        </button>
+            <p>
+                <strong>¿Qué desea realizar?</strong>
+            </p>
+
+            <div class="modo-botones">
+
+                <button
+                    class="modo-btn activo"
+                    onclick="mostrarOperario()">
+                    👷 REALIZAR CONTROL
+                </button>
+
+                <button
+                    class="modo-btn"
+                    onclick="mostrarSupervisor()">
+                    👨‍💼 REVISAR CONTROL
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATOS DEL EQUIPO -->
+        <section class="tarjeta equipo-card">
+
+            <span class="label">EQUIPO</span>
+
+            <h2 id="nombreEquipo">
+                Cargando equipo...
+            </h2>
+
+        </section>
+
+
+        <!-- FORMULARIO OPERARIO -->
+        <div id="operarioForm">
+
+            <!-- DATOS OPERARIO -->
+            <section class="tarjeta datos">
+
+                <label for="operario">
+                    Operario / Legajo
+                </label>
+
+                <input
+                    type="text"
+                    id="operario"
+                    placeholder="Ingrese nombre y legajo"
+                    autocomplete="off">
+
+
+                <!-- FECHA Y HORA -->
+                <div class="fechahora">
+
+                    <div>
+
+                        <span class="label">
+                            Fecha
+                        </span>
+
+                        <p id="fecha">
+                            --
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="label">
+                            Hora
+                        </span>
+
+                        <p id="hora">
+                            --
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHECKLIST -->
+            <section
+                class="checklist"
+                id="contenedorPreguntas">
+
+                <p class="cargando">
+                    Cargando preguntas del equipo...
+                </p>
+
+            </section>
+
+
+            <!-- OBSERVACIONES -->
+            <section class="tarjeta observaciones">
+
+                <label>
+                    Observaciones
+                </label>
+
+                <textarea
+                    id="observaciones"
+                    placeholder="Ingrese observaciones si existen...">
+                </textarea>
+
+            </section>
+
+
+            <!-- BOTÓN ENVIAR -->
+            <section class="enviar">
+
+                <button
+                    id="botonEnviar"
+                    onclick="enviarControl()">
+
+                    ENVIAR CONTROL
+
+                </button>
+
+            </section>
+
+        </div>
+
+
+        <!-- PANEL SUPERVISOR -->
+        <div
+            id="supervisorPanel"
+            style="display:none;">
+
+            <!-- RESUMEN -->
+            <section class="tarjeta">
+
+                <span class="label">
+                    ÚLTIMO CONTROL REALIZADO
+                </span>
+
+
+                <div class="resumen-item">
+
+                    <span>
+                        Equipo:
+                    </span>
+
+                    <strong id="supervisorEquipo">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-item">
+
+                    <span>
+                        Operario / Legajo:
+                    </span>
+
+                    <strong id="supervisorOperario">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-item">
+
+                    <span>
+                        Fecha:
+                    </span>
+
+                    <strong id="supervisorFecha">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-item">
+
+                    <span>
+                        Hora:
+                    </span>
+
+                    <strong id="supervisorHora">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-item">
+
+                    <span>
+                        Resultado General:
+                    </span>
+
+                    <strong id="supervisorResultado">
+                        -
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESPUESTAS -->
+            <section class="tarjeta">
+
+                <h3>
+                    Respuestas registradas
+                </h3>
+
+                <ul
+                    class="lista-revision"
+                    id="contenedorRevision">
+
+                    <li>
+                        Cargando respuestas...
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- OBSERVACIONES -->
+            <section class="tarjeta">
+
+                <h3>
+                    Observaciones
+                </h3>
+
+                <p
+                    id="revisionObservaciones"
+                    style="font-style:italic;">
+
+                    Sin observaciones.
+
+                </p>
+
+            </section>
+
+
+            <!-- SUPERVISOR -->
+            <section class="tarjeta">
+
+                <label for="nombreSupervisor">
+                    Nombre del Supervisor
+                </label>
+
+                <input
+                    type="text"
+                    id="nombreSupervisor"
+                    placeholder="Ingrese su nombre"
+                    autocomplete="off">
+
+
+                <button
+                    class="confirmar-revision"
+                    id="botonRevision"
+                    onclick="confirmarRevision()">
+
+                    ✓ CONFIRMAR REVISIÓN
+
+                </button>
+
+            </section>
+
+        </div>
+
     </div>
-</section>
 
-<!-- DATOS DEL EQUIPO -->
-<section class="tarjeta equipo-card">
-    <span class="label">EQUIPO</span>
-    <h2 id="nombreEquipo">Cargando equipo...</h2>
-</section>
 
-<!-- FORMULARIO OPERARIO -->
-<div id="operarioForm">
-
-    <!-- DATOS OPERARIO -->
-    <section class="tarjeta datos">
-
-        <label for="operario">
-            Operario / Legajo
-        </label>
-
-        <input
-            type="text"
-            id="operario"
-            placeholder="Ingrese nombre y legajo"
-        >
-
-        <div class="fechahora">
-
-            <div>
-                <span class="label">Fecha</span>
-                <p id="fecha">--</p>
-            </div>
-
-            <div>
-                <span class="label">Hora</span>
-                <p id="hora">--</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- CHECKLIST -->
-    <section class="checklist" id="contenedorPreguntas">
-
-        <p style="text-align: center; color: #6b7280; padding: 15px;">
-            Cargando preguntas del equipo...
-        </p>
-
-    </section>
-
-    <!-- OBSERVACIONES -->
-    <section class="tarjeta observaciones">
-
-        <label>Observaciones</label>
-
-        <textarea
-            placeholder="Ingrese observaciones si existen..."
-        ></textarea>
-
-    </section>
-
-    <!-- BOTÓN ENVIAR -->
-    <section class="enviar">
-
-        <button onclick="enviarControl()">
-            ENVIAR CONTROL
-        </button>
-
-    </section>
-
-</div>
-
-<!-- PANEL SUPERVISOR -->
-<div id="supervisorPanel" style="display: none;">
-
-    <section class="tarjeta">
-
-        <span class="label">
-            ÚLTIMO CONTROL REALIZADO
-        </span>
-
-        <div class="resumen-item">
-            <span>Equipo:</span>
-            <strong id="supervisorEquipo">-</strong>
-        </div>
-
-        <div class="resumen-item">
-            <span>Operario / Legajo:</span>
-            <strong id="supervisorOperario">-</strong>
-        </div>
-
-        <div class="resumen-item">
-            <span>Fecha / Hora:</span>
-            <strong id="supervisorFecha">-</strong>
-        </div>
-
-        <div class="resumen-item">
-            <span>Resultado General:</span>
-            <strong id="supervisorResultado">-</strong>
-        </div>
-
-    </section>
-
-    <!-- RESPUESTAS -->
-    <section class="tarjeta">
-
-        <h3>Respuestas registradas</h3>
-
-        <ul
-            class="lista-revision"
-            id="contenedorRevision"
-        >
-            <li>Cargando respuestas...</li>
-        </ul>
-
-    </section>
-
-    <!-- OBSERVACIONES -->
-    <section class="tarjeta">
-
-        <h3>Observaciones</h3>
-
-        <p
-            id="revisionObservaciones"
-            style="font-style: italic;"
-        >
-            Sin observaciones.
-        </p>
-
-    </section>
-
-    <!-- CONFIRMAR REVISIÓN -->
-    <section class="tarjeta">
-
-        <label for="nombreSupervisor">
-            Nombre del Supervisor
-        </label>
-
-        <input
-            type="text"
-            id="nombreSupervisor"
-            placeholder="Ingrese su nombre"
-        >
-
-        <button
-            class="confirmar-revision"
-            onclick="confirmarRevision()"
-        >
-            ✓ CONFIRMAR REVISIÓN
-        </button>
-
-    </section>
-
-</div>
-```
-
-</div>
-
-<script src="script.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="script.js?v=3" defer></script>
 
 </body>
+
 </html>
